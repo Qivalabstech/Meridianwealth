@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian Wealth Partners — Fee-Only Fiduciary Financial Planning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#142640; --paper:#F5F6F4; --paper-2:#EBEDE9; --paper-3:#E2E5E0;
+    --brass:#B08D57; --brass-deep:#8F7040; --brass-tint:#F1EAE0;
+    --slate:#5B6470; --line:#DCDFDA; --white:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 32px;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .display{font-family:'Spectral',serif;}
+  img,svg{display:block; max-width:100%;}
+
+  /* scroll reveal */
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none; transition:none;} }
+
+  .pitch-banner{background:var(--brass); color:white; text-align:center; padding:9px; font-size:12.5px; font-family:'IBM Plex Mono',monospace;}
+
+  nav{position:sticky; top:0; z-index:50; background:rgba(245,246,244,0.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); transition:box-shadow .3s ease;}
+  nav.scrolled{box-shadow:0 6px 24px rgba(20,38,64,0.06);}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:80px;}
+  .brand{font-family:'Spectral',serif; font-weight:600; font-size:20px; letter-spacing:0.01em; display:flex; align-items:center; gap:10px;}
+  .brand-mark{width:30px; height:30px;}
+  .brand span{color:var(--brass-deep);}
+  .navlinks{display:flex; gap:34px; font-size:14px; font-weight:500; color:var(--slate);}
+  .navlinks a{text-decoration:none; position:relative; padding-bottom:3px;}
+  .navlinks a::after{content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--brass); transition:width .25s ease;}
+  .navlinks a:hover::after{width:100%;}
+  @media (max-width:900px){ .navlinks{display:none;} }
+  .navcta{background:var(--ink); color:white; font-size:13.5px; font-weight:600; padding:12px 24px; border-radius:2px; text-decoration:none; transition:background .2s;}
+  .navcta:hover{background:var(--brass-deep);}
+
+  /* HERO */
+  .hero{padding:96px 0 76px; position:relative; overflow:hidden;}
+  .hero::before{content:''; position:absolute; top:-200px; right:-200px; width:600px; height:600px; border-radius:50%;
+    background:radial-gradient(circle, rgba(176,141,87,0.08), transparent 70%); pointer-events:none;}
+  .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:64px; align-items:center; position:relative;}
+  @media (max-width:960px){ .hero-grid{grid-template-columns:1fr;} }
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass-deep); margin-bottom:22px; font-weight:500;}
+  h1.display{font-size:clamp(36px,4.4vw,54px); font-weight:600; line-height:1.14; margin-bottom:24px; letter-spacing:-0.01em;}
+  .hero p.lead{font-size:17.5px; color:var(--slate); max-width:470px; margin-bottom:34px;}
+  .btn{display:inline-flex; align-items:center; gap:9px; padding:15px 28px; border-radius:2px; font-weight:600; font-size:14.5px; text-decoration:none; border:1px solid var(--ink); transition:all .2s ease;}
+  .btn-primary{background:var(--ink); color:white;}
+  .btn-primary:hover{background:var(--brass-deep); border-color:var(--brass-deep); transform:translateY(-1px);}
+  .btn-ghost{background:transparent; color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink); color:white;}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:38px;}
+  .hero-trust{display:flex; gap:28px; flex-wrap:wrap; font-size:12.5px; color:var(--slate);}
+  .hero-trust b{color:var(--ink); font-family:'IBM Plex Mono',monospace;}
+
+  .chart-card{background:var(--white); border:1px solid var(--line); border-radius:6px; padding:32px; box-shadow:0 20px 50px rgba(20,38,64,0.06);}
+  .chart-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:18px;}
+  .chart-head .t{font-family:'Spectral',serif; font-size:16px; font-weight:600;}
+  .chart-head .v{font-family:'IBM Plex Mono',monospace; font-size:13px; color:#3A6B4E; font-weight:600;}
+  .chart-svg{width:100%; height:150px;}
+  .chart-legend{display:flex; justify-content:space-between; margin-top:10px; font-size:11px; color:var(--slate); font-family:'IBM Plex Mono',monospace;}
+  .cred-list{margin-top:24px; border-top:1px solid var(--line); padding-top:20px;}
+  .cred-row{display:flex; justify-content:space-between; padding:10px 0; font-size:13px;}
+  .cred-row .label{color:var(--slate);}
+  .cred-row .val{font-family:'IBM Plex Mono',monospace; font-weight:600;}
+
+  /* stats strip */
+  .stats-strip{background:var(--ink); padding:52px 0;}
+  .stats-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; text-align:center;}
+  @media (max-width:700px){ .stats-grid{grid-template-columns:1fr 1fr;} }
+  .stat-num{font-family:'Spectral',serif; font-size:34px; font-weight:600; color:white;}
+  .stat-label{font-size:12px; color:#9FADC0; margin-top:6px; text-transform:uppercase; letter-spacing:0.04em;}
+
+  .section{padding:88px 0;}
+  .section-head{max-width:620px; margin-bottom:52px;}
+  .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+  .kicker{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--brass-deep); margin-bottom:16px; font-weight:500;}
+  h2.display{font-size:clamp(28px,3.2vw,36px); font-weight:600; letter-spacing:-0.01em;}
+  .section-head p{color:var(--slate); font-size:16px; margin-top:16px;}
+
+  /* services */
+  .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  @media (max-width:800px){ .services-grid{grid-template-columns:1fr;} }
+  .service{background:var(--white); padding:36px 30px; border-radius:6px; border:1px solid var(--line); transition:transform .25s ease, box-shadow .25s ease;}
+  .service:hover{transform:translateY(-4px); box-shadow:0 20px 40px rgba(20,38,64,0.08);}
+  .service-icon{width:44px; height:44px; margin-bottom:20px;}
+  .service h3{font-family:'Spectral',serif; font-size:19px; font-weight:600; margin-bottom:10px;}
+  .service p{font-size:14px; color:var(--slate);}
+
+  /* process timeline */
+  .process-strip{background:var(--paper-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .process-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative;}
+  @media (max-width:900px){ .process-grid{grid-template-columns:1fr 1fr;} }
+  .process-step{padding:0 20px 0 0; position:relative;}
+  .process-step:not(:last-child)::after{content:''; position:absolute; top:22px; right:0; width:calc(100% - 44px); height:1px; background:var(--line);}
+  @media (max-width:900px){ .process-step:not(:last-child)::after{display:none;} }
+  .step-num{width:44px; height:44px; border-radius:50%; background:var(--white); border:2px solid var(--brass); display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-weight:600; color:var(--brass-deep); margin-bottom:18px;}
+  .process-step h4{font-family:'Spectral',serif; font-size:16.5px; font-weight:600; margin-bottom:8px;}
+  .process-step p{font-size:13px; color:var(--slate);}
+
+  /* fee table */
+  .fee-table{background:var(--white); border:1px solid var(--line); border-radius:6px; overflow:hidden; box-shadow:0 20px 50px rgba(20,38,64,0.05);}
+  .fee-row{display:grid; grid-template-columns:2fr 1fr 1fr; padding:18px 26px; border-bottom:1px solid var(--line); font-size:14px; align-items:center;}
+  .fee-row.head{background:var(--ink); color:white; font-family:'IBM Plex Mono',monospace; font-size:11.5px; text-transform:uppercase; letter-spacing:0.05em;}
+  .fee-row:last-child{border-bottom:none;}
+  .fee-row:not(.head):hover{background:var(--paper);}
+  .fee-row .val{font-family:'IBM Plex Mono',monospace; font-weight:600;}
+  .fee-row .good{color:#3A6B4E;}
+
+  /* team */
+  .team-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
+  @media (max-width:900px){ .team-grid{grid-template-columns:repeat(2,1fr);} }
+  .team-card{text-align:center;}
+  .avatar{width:88px; height:88px; border-radius:50%; margin:0 auto 16px; display:flex; align-items:center; justify-content:center; font-family:'Spectral',serif; font-size:26px; font-weight:600; color:white;}
+  .team-card h4{font-family:'Spectral',serif; font-size:16px; font-weight:600; margin-bottom:4px;}
+  .team-card .role{font-size:12px; color:var(--brass-deep); font-family:'IBM Plex Mono',monospace; margin-bottom:8px;}
+  .team-card .bio{font-size:12.5px; color:var(--slate);}
+
+  /* testimonials */
+  .testi-strip{background:var(--paper-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  @media (max-width:900px){ .testi-grid{grid-template-columns:1fr;} }
+  .testi-card{background:var(--white); border-radius:6px; padding:30px; border:1px solid var(--line);}
+  .testi-quote{font-family:'Spectral',serif; font-size:16px; font-style:italic; line-height:1.55; margin-bottom:18px; color:var(--ink);}
+  .testi-author{display:flex; align-items:center; gap:12px;}
+  .testi-avatar{width:38px; height:38px; border-radius:50%; background:var(--brass-tint); color:var(--brass-deep); display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600;}
+  .testi-name{font-size:13.5px; font-weight:600;}
+  .testi-loc{font-size:11.5px; color:var(--slate);}
+
+  /* insights */
+  .insights-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  @media (max-width:800px){ .insights-grid{grid-template-columns:1fr;} }
+  .insight-card{border:1px solid var(--line); border-radius:6px; overflow:hidden; transition:transform .25s ease;}
+  .insight-card:hover{transform:translateY(-4px);}
+  .insight-thumb{height:140px; display:flex; align-items:center; justify-content:center;}
+  .insight-body{padding:22px; background:var(--white);}
+  .insight-tag{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--brass-deep); text-transform:uppercase; margin-bottom:8px; letter-spacing:0.04em;}
+  .insight-body h4{font-family:'Spectral',serif; font-size:15.5px; font-weight:600; margin-bottom:8px; line-height:1.35;}
+  .insight-body p{font-size:12.5px; color:var(--slate);}
+
+  /* contact form */
+  .form-card{background:var(--ink); color:white; border-radius:8px; padding:48px; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; position:relative; overflow:hidden;}
+  .form-card::before{content:''; position:absolute; bottom:-100px; left:-100px; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(176,141,87,0.15), transparent 70%);}
+  @media (max-width:800px){ .form-card{grid-template-columns:1fr;} }
+  .form-card h2{font-family:'Spectral',serif; font-size:30px; margin-bottom:14px; font-weight:600;}
+  .form-card p{color:#B9C2CE; font-size:14.5px;}
+  .fake-form{background:white; border-radius:6px; padding:28px; position:relative;}
+  .fake-field{margin-bottom:16px;}
+  .fake-field label{display:block; font-size:11.5px; color:var(--slate); margin-bottom:6px; font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:0.04em;}
+  .fake-field .box{border:1px solid var(--line); border-radius:3px; padding:12px 14px; font-size:14px; color:#9AA3AC; background:var(--paper);}
+  .fake-submit{background:var(--brass); color:white; text-align:center; padding:13px; border-radius:3px; font-weight:600; font-size:14px; margin-top:8px; cursor:pointer; transition:background .2s;}
+  .fake-submit:hover{background:var(--brass-deep);}
+
+  footer{background:var(--paper-2); padding:64px 0 32px; border-top:1px solid var(--line);}
+  .foot-grid{display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px;}
+  @media (max-width:800px){ .foot-grid{grid-template-columns:1fr 1fr;} }
+  .foot-brand{font-family:'Spectral',serif; font-weight:600; font-size:19px; margin-bottom:12px;}
+  footer p{color:var(--slate); font-size:13.5px;}
+  footer h4{font-size:12px; text-transform:uppercase; letter-spacing:0.05em; color:var(--slate); margin-bottom:16px; font-family:'IBM Plex Mono',monospace; font-weight:500;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:10px; font-size:13.5px;}
+  footer li a{text-decoration:none; color:var(--ink); transition:color .2s;}
+  footer li a:hover{color:var(--brass-deep);}
+  .foot-bottom{border-top:1px solid var(--line); padding-top:24px; display:flex; justify-content:space-between; font-size:11.5px; color:var(--slate); flex-wrap:wrap; gap:10px;}
+</style>
+</head>
+<body>
+
+<div class="pitch-banner">SAMPLE BUILD — created by QivaLabs to show WordPress + compliance-aware financial-services site work · not a live client</div>
+
+<nav id="nav">
+  <div class="wrap">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 32 32"><path d="M4 24L12 8L20 20L28 6" stroke="#B08D57" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Meridian <span>Wealth Partners</span>
+    </div>
+    <div class="navlinks">
+      <a href="#services">Services</a>
+      <a href="#process">Our Process</a>
+      <a href="#fees">Fees</a>
+      <a href="#team">Team</a>
+      <a href="#insights">Insights</a>
+    </div>
+    <a class="navcta" href="#contact">Book Consultation</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow reveal">Fee-Only · Fiduciary · SEC-Registered</div>
+      <h1 class="display reveal">Financial advice with nothing hidden in the fine print.</h1>
+      <p class="lead reveal">Meridian is a fee-only fiduciary firm — no commissions, no proprietary products, no conflicts of interest. Just a clear plan for your money, built by advisors legally required to put your interests first.</p>
+      <div class="cta-row reveal">
+        <a href="#contact" class="btn btn-primary">Schedule a free consultation</a>
+        <a href="#fees" class="btn btn-ghost">See our fees</a>
+      </div>
+      <div class="hero-trust reveal">
+        <span><b>18 yrs</b> in practice</span>
+        <span><b>6</b> CFP® professionals</span>
+        <span><b>340+</b> families served</span>
+      </div>
+    </div>
+    <div class="chart-card reveal">
+      <div class="chart-head">
+        <div class="t">Model Portfolio Growth</div>
+        <div class="v">+9.4% avg / yr, 10-yr</div>
+      </div>
+      <svg class="chart-svg" viewBox="0 0 400 150" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="fillGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#B08D57" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#B08D57" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M0,120 L40,110 L80,115 L120,90 L160,95 L200,70 L240,75 L280,50 L320,55 L360,25 L400,20 L400,150 L0,150 Z" fill="url(#fillGrad)"/>
+        <path d="M0,120 L40,110 L80,115 L120,90 L160,95 L200,70 L240,75 L280,50 L320,55 L360,25 L400,20" stroke="#B08D57" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="chart-legend"><span>2016</span><span>2020</span><span>2026</span></div>
+      <div class="cred-list">
+        <div class="cred-row"><span class="label">Fiduciary standard</span><span class="val">100% of the time</span></div>
+        <div class="cred-row"><span class="label">Commission-based revenue</span><span class="val">$0</span></div>
+        <div class="cred-row"><span class="label">Assets under management</span><span class="val">$410M+</span></div>
+        <div class="cred-row"><span class="label">SEC / FINRA disclosures</span><span class="val">Form ADV ↗</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-strip">
+  <div class="wrap stats-grid">
+    <div class="reveal"><div class="stat-num" data-count="340">0</div><div class="stat-label">Families Served</div></div>
+    <div class="reveal"><div class="stat-num" data-count="410" data-suffix="M+">0</div><div class="stat-label">Assets Managed</div></div>
+    <div class="reveal"><div class="stat-num" data-count="18">0</div><div class="stat-label">Years in Practice</div></div>
+    <div class="reveal"><div class="stat-num" data-count="98" data-suffix="%">0</div><div class="stat-label">Client Retention</div></div>
+  </div>
+</div>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">What We Do</div>
+      <h2 class="display">Planning built around your whole financial life</h2>
+      <p>Most firms sell products. We build a plan first, then find the lowest-cost way to execute it.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service reveal">
+        <svg class="service-icon" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#F1EAE0"/><path d="M14 24L19 19L24 24L30 15" stroke="#8F7040" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Retirement Planning</h3>
+        <p>Income modeling, Social Security timing, and a withdrawal strategy built to outlast you.</p>
+      </div>
+      <div class="service reveal">
+        <svg class="service-icon" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#F1EAE0"/><rect x="14" y="20" width="4" height="10" fill="#8F7040"/><rect x="20" y="15" width="4" height="15" fill="#8F7040"/><rect x="26" y="24" width="4" height="6" fill="#8F7040"/></svg>
+        <h3>Investment Management</h3>
+        <p>Low-cost, tax-aware portfolios sized to the risk you can actually tolerate, not the risk you claim to.</p>
+      </div>
+      <div class="service reveal">
+        <svg class="service-icon" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#F1EAE0"/><path d="M22 13v18M15 18h14M15 26h14" stroke="#8F7040" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3>Estate &amp; Tax Coordination</h3>
+        <p>Working directly alongside your CPA and attorney — not around them, and not billing you to reinvent their work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="process-strip">
+  <div class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">How We Work</div>
+        <h2 class="display">Four meetings before you pay us a dollar in management fees</h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-step reveal"><div class="step-num">01</div><h4>Discovery Call</h4><p>30 minutes, no obligation. We tell you honestly if we're a fit.</p></div>
+        <div class="process-step reveal"><div class="step-num">02</div><h4>Plan Draft</h4><p>We build a full financial plan before discussing management.</p></div>
+        <div class="process-step reveal"><div class="step-num">03</div><h4>Plan Review</h4><p>Walk through the plan together, line by line, questions welcome.</p></div>
+        <div class="process-step reveal"><div class="step-num">04</div><h4>Ongoing Management</h4><p>Quarterly check-ins, annual plan updates, and a direct line to your advisor.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section" id="fees">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Fee Transparency</div>
+      <h2 class="display">The fee page most firms bury. We put it up front.</h2>
+      <p>One flat, published rate — the same rate whether you're a new client or you've been with us a decade.</p>
+    </div>
+    <div class="fee-table reveal">
+      <div class="fee-row head"><span>Assets Under Management</span><span>Annual Fee</span><span>What You Get</span></div>
+      <div class="fee-row"><span>Up to $1M</span><span class="val">0.85%</span><span class="good">Full planning + management</span></div>
+      <div class="fee-row"><span>$1M – $5M</span><span class="val">0.65%</span><span class="good">Full planning + management</span></div>
+      <div class="fee-row"><span>$5M+</span><span class="val">0.45%</span><span class="good">Full planning + management</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="team">
+  <div class="wrap">
+    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+      <div class="kicker">Meet the Advisors</div>
+      <h2 class="display">Six CFP® professionals, zero commission-based compensation</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal"><div class="avatar" style="background:#8F7040;">EM</div><h4>Elena Marsh</h4><div class="role">CFP®, Founding Partner</div><div class="bio">22 yrs · retirement income specialist</div></div>
+      <div class="team-card reveal"><div class="avatar" style="background:#142640;">DK</div><h4>David Kwan</h4><div class="role">CFP®, Partner</div><div class="bio">15 yrs · tax-aware investing</div></div>
+      <div class="team-card reveal"><div class="avatar" style="background:#5B6470;">RP</div><h4>Rosa Patel</h4><div class="role">CFP®, Senior Advisor</div><div class="bio">11 yrs · estate coordination</div></div>
+      <div class="team-card reveal"><div class="avatar" style="background:#B08D57;">JT</div><h4>James Tran</h4><div class="role">CFP®, Advisor</div><div class="bio">7 yrs · early-career accumulation</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="testi-strip">
+  <div class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">Client Stories</div>
+        <h2 class="display">What clients say after the first year</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card reveal">
+          <div class="testi-quote">"For the first time I understood exactly what I was paying and why. No surprises in year two."</div>
+          <div class="testi-author"><div class="testi-avatar">SH</div><div><div class="testi-name">Sandra H.</div><div class="testi-loc">Client since 2019</div></div></div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="testi-quote">"They turned down a rollover that would've earned them more, because it wasn't right for me. That's when I trusted them."</div>
+          <div class="testi-author"><div class="testi-avatar">MT</div><div><div class="testi-name">Marcus T.</div><div class="testi-loc">Client since 2021</div></div></div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="testi-quote">"The fee page alone told me more about their honesty than any pitch I'd sat through elsewhere."</div>
+          <div class="testi-author"><div class="testi-avatar">PL</div><div><div class="testi-name">Priya L.</div><div class="testi-loc">Client since 2023</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section" id="insights">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Insights</div>
+      <h2 class="display">Notes on planning, written in plain English</h2>
+    </div>
+    <div class="insights-grid">
+      <div class="insight-card reveal">
+        <div class="insight-thumb" style="background:linear-gradient(135deg,#142640,#2A4470);"><svg width="52" height="52" viewBox="0 0 52 52"><path d="M10 38L20 20L30 34L42 12" stroke="#B08D57" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="insight-body"><div class="insight-tag">Retirement</div><h4>When to actually take Social Security</h4><p>The break-even math most calculators skip.</p></div>
+      </div>
+      <div class="insight-card reveal">
+        <div class="insight-thumb" style="background:linear-gradient(135deg,#8F7040,#B08D57);"><svg width="52" height="52" viewBox="0 0 52 52"><rect x="14" y="24" width="6" height="14" fill="white"/><rect x="23" y="16" width="6" height="22" fill="white"/><rect x="32" y="28" width="6" height="10" fill="white"/></svg></div>
+        <div class="insight-body"><div class="insight-tag">Investing</div><h4>Why 0.45% still isn't "free"</h4><p>How to read any advisor's fee schedule.</p></div>
+      </div>
+      <div class="insight-card reveal">
+        <div class="insight-thumb" style="background:linear-gradient(135deg,#5B6470,#8A93A0);"><svg width="52" height="52" viewBox="0 0 52 52"><path d="M26 12v28M15 20h22M15 32h22" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="insight-body"><div class="insight-tag">Estate</div><h4>The one form most families forget</h4><p>Beneficiary designations outrank your will.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="form-card reveal">
+      <div>
+        <h2>Let's talk about your plan.</h2>
+        <p>A 30-minute call, no obligation. We'll tell you honestly whether we're a fit before you pay us a cent.</p>
+      </div>
+      <div class="fake-form">
+        <div class="fake-field"><label>Full name</label><div class="box">Jane Whitfield</div></div>
+        <div class="fake-field"><label>Email</label><div class="box">jane@example.com</div></div>
+        <div class="fake-field"><label>Investable assets</label><div class="box">Select a range…</div></div>
+        <div class="fake-submit">Request a Call</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Meridian Wealth Partners</div>
+        <p>Fee-only fiduciary financial planning. No commissions, no proprietary products — just a plan built for you.</p>
+      </div>
+      <div><h4>Services</h4><ul><li><a href="#services">Retirement Planning</a></li><li><a href="#services">Investment Management</a></li><li><a href="#services">Estate &amp; Tax</a></li></ul></div>
+      <div><h4>Firm</h4><ul><li><a href="#team">Our Team</a></li><li><a href="#fees">Fee Schedule</a></li><li><a href="#insights">Insights</a></li></ul></div>
+      <div><h4>Legal</h4><ul><li>Form ADV Part 2</li><li>Privacy Policy</li><li>Client Relationship Summary</li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>Meridian Wealth Partners is a fictional demo firm. Advisory services offered through a Registered Investment Adviser.</span>
+      <span>Sample build by QivaLabs — not affiliated with any real entity.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  const counters = document.querySelectorAll('.stat-num');
+  const cio = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      cio.unobserve(e.target);
+      const el = e.target;
+      const target = parseInt(el.dataset.count, 10);
+      const suffix = el.dataset.suffix || '';
+      const dur = 1200;
+      const start = performance.now();
+      function tick(now){
+        const p = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(el => cio.observe(el));
+</script>
+
+</body>
+</html>
